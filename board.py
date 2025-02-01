@@ -79,26 +79,41 @@ class Board:
 
             temp_x += dx
             temp_y += dy
+
+    def is_full(self) -> bool:
+        for row in self.board:
+            if 0 in row:
+                return False
+        return True
+    
+    def count_stones(self, player: int) -> int:
+        count = 0
+        for row in self.board:
+            count += row.count(player)
+        return count
+    
+    def get_player_stone(self, player: int) -> str:
+        return "o" if player == 1 else "x"
     
 
 
-currentPlayer = 1
-board = Board()
-board.show_board()
-for step in range(60):
-    print(f"currentPlayer: " + ("o" if currentPlayer == 1 else "x"))
-    if len(board.get_putable_places(currentPlayer)) == 0:
-        print("置ける場所がないです")
-        break
-    while(1):
-        x = int(input("何行目に置くかを入力してください1~8 :"))
-        y = int(input("何列目に置くかを入力してください1~8 :"))
-        if(board.can_put(currentPlayer, x-1, y-1)):
-            break
-        else:
-            print("そこには置けません")
+# currentPlayer = 1
+# board = Board()
+# board.show_board()
+# for step in range(60):
+#     print(f"currentPlayer: " + ("o" if currentPlayer == 1 else "x"))
+#     if len(board.get_putable_places(currentPlayer)) == 0:
+#         print("置ける場所がないです")
+#         break
+#     while(1):
+#         x = int(input("何行目に置くかを入力してください1~8 :"))
+#         y = int(input("何列目に置くかを入力してください1~8 :"))
+#         if(board.can_put(currentPlayer, x-1, y-1)):
+#             break
+#         else:
+#             print("そこには置けません")
     
-    board.proceed_state(currentPlayer,(x-1,y-1))
-    board.show_board()
-    currentPlayer *= -1
+#     board.proceed_state(currentPlayer,(x-1,y-1))
+#     board.show_board()
+#     currentPlayer *= -1
 
