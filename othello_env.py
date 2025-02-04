@@ -34,7 +34,7 @@ class OthelloEnv(gym.Env):
         x, y = divmod(action, 8)
 
         if not self.is_valid_move(self.current_player, x, y):
-            return self.board, -1, False, False, {} #不正な手を打った場合：報酬-1
+            return self.board, -100, False, False, {} #不正な手を打った場合：報酬-1
         
         #石を置く
         self.place_stone(self.current_player, x, y)
