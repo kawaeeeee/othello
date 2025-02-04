@@ -41,17 +41,18 @@ class Board:
         if not (0 <= temp_x < 8 and 0<= temp_y < 8):
             return False
         
-        if self.board[temp_x][temp_y] == -player: #相手の石がある
-            while 0 <= temp_x < 8 and 0 <= temp_y < 8:
-                temp_x += dx
-                temp_y += dy
-                if not (0 <= temp_x < 8 and 0<= temp_y < 8):
-                    return False
-                if self.board[temp_x][temp_y] == player:
-                    return True
-                elif self.board[temp_x][temp_y] == 0:
-                    return False
+        if self.board[temp_x][temp_y] != -player: #相手の石がある
+            return False
         
+        while 0 <= temp_x < 8 and 0 <= temp_y < 8:
+            temp_x += dx
+            temp_y += dy
+            if not (0 <= temp_x < 8 and 0<= temp_y < 8):
+                return False
+            if self.board[temp_x][temp_y] == player:
+                return True
+            elif self.board[temp_x][temp_y] == 0:
+                return False
         return False
 
 
