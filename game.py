@@ -1,13 +1,13 @@
 from board import Board
 from typing import List, Dict, Tuple, Optional, Union
-from player import Player, AIPlayer
+from player import Player, DQNPlayer, RandomPlayer
 import random
 
 class Game:
     def __init__(self):
         self.board = Board()
         self.player1 = Player(1, "you")
-        self.player2 = AIPlayer(-1, "AI")
+        self.player2 = RandomPlayer(-1, "AI")
         self.turn = 1
         self.current_player = self.player1
 

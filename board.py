@@ -41,7 +41,7 @@ class Board:
         if not (0 <= temp_x < 8 and 0<= temp_y < 8):
             return False
         
-        if self.board[temp_x][temp_y] == player * -1: #相手の石がある
+        if self.board[temp_x][temp_y] == -player: #相手の石がある
             while 0 <= temp_x < 8 and 0 <= temp_y < 8:
                 temp_x += dx
                 temp_y += dy
@@ -57,6 +57,10 @@ class Board:
 
     def proceed_state(self, player : int, place : Tuple[int,int]):
         x, y = place
+
+        if not self.can_put(player, x, y):
+            raise ValueError(f"({x}, {y}) には置けません")
+
         self.board[x][y] = player
         directions = [(-1,0), (1,0), (0,-1), (0,1), (-1,-1), (-1,1), (1,-1), (1,1)]
 
@@ -68,7 +72,7 @@ class Board:
         stones_to_flip = []
 
         while 0 <= temp_x < 8 and 0 <= temp_y < 8:
-            if self.board[temp_x][temp_y] == player * -1:
+            if self.board[temp_x][temp_y] == -player:
                 stones_to_flip.append((temp_x,temp_y))
             elif self.board[temp_x][temp_y] == player:
                 for flip_x, flip_y in stones_to_flip:

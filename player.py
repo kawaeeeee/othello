@@ -23,9 +23,16 @@ class Player:
         return x-1, y-1
     
 
-class AIPlayer(Player):
+class RandomPlayer(Player):
     def get_action(self, board: Board) -> Tuple[int,int]:
         if len(board.get_putable_places(self.player)) == 0:
             return None
         putable_places = board.get_putable_places(self.player)
         return random.choice(putable_places)
+    
+
+class DQNPlayer(Player):
+    def get_action(self, board: Board) -> Tuple[int,int]:
+        if len(board.get_putable_places(self.player)) == 0:
+            return None
+        
