@@ -1,0 +1,6 @@
+# venv
+othellovenv/
+
+# python cache
+*.pyc
+__pycache__/
