@@ -9,6 +9,6 @@ services:
     ports:
       - 9000:8000 
       - 3000:3000 
-    command: sleep infinity
+    command: bash entrypoint.sh
     environment:
       PYTHONPATH: /workspace/backend/src
